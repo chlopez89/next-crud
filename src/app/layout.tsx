@@ -7,6 +7,8 @@ const fontSans = FontSans({
   variable: "--font-sans",
 });
 import { cn } from "@/lib/utils"
+import { ThemeProvider } from "@/components/theme-provider"
+import NavBar from "../components/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +26,18 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
-        )}>{children}
+        )}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <main className="container mx-auto">
+              <NavBar />
+              {children}
+            </main>
+          </ThemeProvider>
       </body>
     </html>
   );
