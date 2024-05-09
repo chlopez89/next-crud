@@ -1,8 +1,6 @@
 import { TaskForm } from "./task-form"
 
-
-
-function NewPage() {
+async function NewPage() {
     return (
         <div className="flex justify-center items-center h-screen">
             <TaskForm/>

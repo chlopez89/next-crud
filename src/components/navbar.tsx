@@ -4,7 +4,7 @@ import { buttonVariants } from './ui/button';
 
 function NavBar() {
     return (
-    <nav className='flex justify-between'>
+    <nav className='flex justify-between py-10'>
         <h1>
             NextActionsCRUD
         </h1>

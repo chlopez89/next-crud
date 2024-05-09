@@ -19,15 +19,33 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { log } from "console"
+import prisma  from "@/lib/prisma";
+import { redirect } from "next/navigation"
 
 export function TaskForm() {
     async function createTask(formData: FormData) {
         "use server"
-        const taskname = formData.get("taskname")
-        const description = formData.get("description")
-        const priority = formData.get("priority")
+        const taskname = formData.get("taskname")?.toString()
+        const description = formData.get("description")?.toString()
+        const priority = formData.get("priority")?.toString()
+
         console.log({taskname, description, priority})
+
+        if (!taskname || !description || !priority ){
+            return;
+        }
+
+        const newTask = await prisma.task.create({
+            data: {
+                name:taskname,
+                description,
+                priority,
+            }
+        })
+        console.log({newTask});
+
+        redirect('/')
+
     }
     return (
         <form action={createTask}>
